@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>52a0e4ba-874e-43d5-8fcb-0a85f027011f</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Hue</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DataModels\CommentModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModels\StoryModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\HackerNewsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Pages\CommentsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Pages\NewsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Pages\StoryPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Controls\CommentControl.xaml.cs">
+      <DependentUpon>CommentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Controls\StoryTitleControl.xaml.cs">
+      <DependentUpon>StoryTitleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Controls\TitleControl.xaml.cs">
+      <DependentUpon>TitleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Resources\HueViewModelLocator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Controls\CommentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Controls\StoryTitleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Controls\TitleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Resources\ApplicationStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Resources\Colours.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

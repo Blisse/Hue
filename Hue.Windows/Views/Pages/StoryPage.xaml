@@ -1,0 +1,70 @@
+﻿<pages:BaseViewModelPage
+    x:Name="self"
+    x:Class="Hue.Views.Pages.StoryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="using:MASACore.Core.Views"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:controls1="using:Hue.Views.Controls"
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource HueViewModelLocator}, Path=StoryPage}">
+
+    <Grid Background="#222222">
+        <Grid Margin="15, 40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ProgressBar HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,10"
+                                IsIndeterminate="{Binding IsLoading}"
+                                IsEnabled="{Binding IsLoading}"
+                                Background="#222222"
+                                Style="{StaticResource ThemedProgressBarStyle}"/>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Margin="39,0" Command="{Binding ElementName=self, Path=NavigationHelper.GoBackCommand}"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        VerticalAlignment="Center"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+                <Grid Grid.Column="1">
+                    <controls1:TitleControl PageName="Comments"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" Margin="20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <ListView ItemContainerStyle="{StaticResource TransparentCheckMarkListViewItemStyle}"
+                              SelectionMode="None">
+                        <ListViewItem>
+                            <Grid Margin="0,5">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Tapped">
+                                        <core:InvokeCommandAction Command="{Binding Source={StaticResource HueViewModelLocator}, Path=StoryPage.NavigateToCommentsCommand}" 
+                                                                  CommandParameter="{Binding Story}"/>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                                <controls1:StoryTitleControl Story="{Binding Story}"/>
+                            </Grid>
+                        </ListViewItem>
+                    </ListView>
+                </Grid>
+                
+                <WebView Grid.Row="1" Source="{Binding Story.LinkUrl}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</pages:BaseViewModelPage>
